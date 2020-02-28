@@ -1,9 +1,8 @@
 <template>
     <div class="main_conainer">
-
         <div class="row">
-            <FeatureOverview :featureCount="suite.featureCount"/>
-            <ScenarioOverview :scenarios="suite.scenarios"/>
+            <FeatureOverview :suite="suite"/>
+            <ScenarioOverview :suite="suite"/>
         </div>
 
         <div class="row">

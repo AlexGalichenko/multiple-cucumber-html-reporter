@@ -18,7 +18,7 @@
                         <th>
                             <p>Chart</p>
                         </th>
-                        <th>
+                        <th class="row">
                             <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
                                 <p class="">Status</p>
                             </div>
@@ -29,8 +29,13 @@
                     </tr>
                     <tr>
                         <td class="chart">
-                            <canvas id="scenario-chart"></canvas>
-                            <div class="total">{{scenarios.total}}</div>
+                            <PieChart
+                                    :data="chartData"
+                                    :options="options"
+                                    :height="200"
+                                    :width="200"
+                            />
+                            <div class="total">{{suite.scenarios.total}}</div>
                         </td>
                         <td>
                             <table class="tile_info">
@@ -41,7 +46,7 @@
                                             Passed
                                         </p>
                                     </td>
-                                    <td class="percentage">{{scenarios.passedPercentage}} %</td>
+                                    <td class="percentage">{{suite.scenarios.passedPercentage}} %</td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -50,7 +55,7 @@
                                             Failed
                                         </p>
                                     </td>
-                                    <td class="percentage">{{scenarios.failedPercentage}} %</td>
+                                    <td class="percentage">{{suite.scenarios.failedPercentage}} %</td>
                                 </tr><tr>
                                     <td>
                                         <p data-toggle="tooltip" data-placement="left" title="Scenario has double step implementation and failed because of that.">
@@ -58,7 +63,7 @@
                                             Ambiguous
                                         </p>
                                     </td>
-                                    <td class="percentage">{{scenarios.ambiguousPercentage}} %</td>
+                                    <td class="percentage">{{suite.scenarios.ambiguousPercentage}} %</td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -67,7 +72,7 @@
                                             Not defined
                                         </p>
                                     </td>
-                                    <td class="percentage">{{scenarios.notdefinedPercentage}} %</td>
+                                    <td class="percentage">{{suite.scenarios.notdefinedPercentage}} %</td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -76,7 +81,7 @@
                                             Pending
                                         </p>
                                     </td>
-                                    <td class="percentage">{{scenarios.pendingPercentage}} %</td>
+                                    <td class="percentage">{{suite.scenarios.pendingPercentage}} %</td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -85,7 +90,7 @@
                                             Skipped
                                         </p>
                                     </td>
-                                    <td class="percentage">{{scenarios.skippedPercentage}} %</td>
+                                    <td class="percentage">{{suite.scenarios.skippedPercentage}} %</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -99,10 +104,53 @@
 </template>
 
 <script>
+    import PieChart from "../global/PieChart.vue";
+
     export default {
         name: "ScenarioOverview",
+        data() {
+            return {
+                chartData: {
+                    datasets: [{
+                        data: [
+                            this.suite.scenarios.passed,
+                            this.suite.scenarios.failed,
+                            this.suite.scenarios.pending,
+                            this.suite.scenarios.skipped,
+                            this.suite.scenarios.ambiguous,
+                            this.suite.scenarios.notdefined,
+                        ],
+                        borderColor: "black",
+                        borderWidth: 0.1,
+                        backgroundColor: [
+                            "#26B99A",
+                            "#E74C3C",
+                            "#FFD119",
+                            "#3498DB",
+                            "#b73122",
+                            "#F39C12"
+                        ]
+                    }],
+                    labels: [
+                        "Passed",
+                        "Failed",
+                        "Pending",
+                        "Skipped",
+                        "Ambiguous",
+                        "Not defined"
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    legend: false
+                }
+            }
+        },
         props: {
-            scenarios: Object
+            suite: Object
+        },
+        components: {
+            PieChart
         }
     }
 </script>

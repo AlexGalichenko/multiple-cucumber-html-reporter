@@ -18,7 +18,7 @@
                         <th>
                             <p>Chart</p>
                         </th>
-                        <th>
+                        <th class="row">
                             <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
                                 <p class="">Status</p>
                             </div>
@@ -29,8 +29,13 @@
                     </tr>
                     <tr>
                         <td class="chart">
-                            <canvas id="feature-chart"></canvas>
-                            <div class="total">{{featureCount.total}}</div>
+                            <PieChart
+                                    :data="chartData"
+                                    :options="options"
+                                    :height="200"
+                                    :width="200"
+                            />
+                            <div class="total">{{suite.featureCount.total}}</div>
                         </td>
                         <td>
                             <table class="tile_info">
@@ -41,7 +46,7 @@
                                             Passed
                                         </p>
                                     </td>
-                                    <td class="percentage">{{featureCount.passedPercentage}} %</td>
+                                    <td class="percentage">{{suite.featureCount.passedPercentage}} %</td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -50,9 +55,8 @@
                                             Failed
                                         </p>
                                     </td>
-                                    <td class="percentage">{{featureCount.failedPercentage}} %</td>
+                                    <td class="percentage">{{suite.featureCount.failedPercentage}} %</td>
                                 </tr>
-
                                 <tr>
                                     <td>
                                         <p data-toggle="tooltip" data-placement="left" title="Features has double step implementation and failed because of that.">
@@ -60,7 +64,7 @@
                                             Ambiguous
                                         </p>
                                     </td>
-                                    <td class="percentage">{{featureCount.ambiguousPercentage}} %</td>
+                                    <td class="percentage">{{suite.featureCount.ambiguousPercentage}} %</td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -69,9 +73,10 @@
                                             Skipped
                                         </p>
                                     </td>
-                                    <td class="percentage">{{featureCount.skippedPercentage}} %</td>
+                                    <td class="percentage">{{suite.featureCount.skippedPercentage}} %</td>
                                 </tr>
-                                </tbody></table>
+                                </tbody>
+                            </table>
                         </td>
                     </tr>
                     </tbody>
@@ -82,10 +87,48 @@
 </template>
 
 <script>
+    import PieChart from "../global/PieChart.vue";
+
     export default {
         name: "FeatureOverview",
         props: {
-            featureCount: Object
+            suite: Object
+        },
+        data() {
+            return {
+                chartData: {
+                    datasets: [{
+                        data: [
+                            this.suite.featureCount.passed,
+                            this.suite.featureCount.failed,
+                            this.suite.featureCount.ambiguous,
+                            this.suite.featureCount.skipped
+                        ],
+                        borderColor: "black",
+                        borderWidth: 0.1,
+                        backgroundColor: [
+                            "#26B99A",
+                            "#E74C3C",
+                            "#3498DB",
+                            "#b73122"
+                        ]
+                    }],
+                    labels: [
+                        "Passed",
+                        "Failed",
+                        "Pending",
+                        "Skipped"
+
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    legend: false
+                }
+            }
+        },
+        components: {
+            PieChart
         }
     }
 </script>
