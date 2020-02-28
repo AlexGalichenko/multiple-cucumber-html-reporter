@@ -13,6 +13,8 @@
   "main": "lib/generate-report.js",
   "license": "MIT",
   "scripts": {
+    "webpack:watch": "webpack --watch",
+    "webpack": "webpack",
     "test": "node ./test/test.js",
     "unit.test": "jasmine JASMINE_CONFIG_PATH=test/unit/jasmine.json",
     "unit.test.coverage": "JASMINE_CONFIG_PATH=test/unit/jasmine.json istanbul cover jasmine",
@@ -36,7 +38,20 @@
     "lodash": "^4.17.5",
     "moment": "^2.20.1",
     "opn": "^5.2.0",
-    "uuid": "^3.2.1"
+    "uuid": "^3.2.1",
+    "html-webpack-plugin": "^3.2.0",
+    "vue": "^2.6.11",
+    "vue-loader": "^15.8.3",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "vue-router": "^3.1.5",
+    "style-loader": "^1.1.1",
+    "css-loader": "^3.4.0",
+    "file-loader": "^5.0.2",
+    "url-loader": "^3.0.0",
+    "vue-chartjs": "^3.5.0",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.11"
   },
   "devDependencies": {
     "coveralls": "^2.13.1",
