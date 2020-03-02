@@ -56,6 +56,7 @@
   },
   "devDependencies": {
     "coveralls": "^2.13.1",
+    "html-webpack-inline-source-plugin": "0.0.10",
     "istanbul": "0.4.5",
     "jasmine": "2.6.0"
   }

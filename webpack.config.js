@@ -1,9 +1,10 @@
 const path = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackInlineSourcePlugin = require("html-webpack-inline-source-plugin");
 
 module.exports = {
-    mode: "development",
+    mode: "production",
     entry: {
         app: "./vue/main.js",
     },
@@ -40,7 +41,10 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
-            template: "./vue/index1.html"
-        })
+            template: "./vue/index1.html",
+            inject: "body",
+            inlineSource: ".(js|css)$"
+        }),
+        new HtmlWebpackInlineSourcePlugin()
     ]
 };

@@ -2,7 +2,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <div v-if="scenario.tags.length > 0" class="tags">
+                <div v-if="scenario.tags && scenario.tags.length > 0" class="tags">
                     <i class="fa fa-tag fa-lg"/>
                     <span>{{scenario.tags.map(s => s.name).join()}}</span>
                 </div>

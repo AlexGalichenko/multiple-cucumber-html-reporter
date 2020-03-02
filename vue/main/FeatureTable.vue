@@ -280,9 +280,6 @@
 </script>
 
 <style scoped>
-    .pointer {
-        cursor: pointer;
-    }
     .table-responsive {
         overflow-x: unset;
     }
