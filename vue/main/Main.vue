@@ -1,17 +1,21 @@
 <template>
-    <div class="main_conainer">
-        <div class="row">
-            <FeatureOverview :suite="suite"/>
-            <ScenarioOverview :suite="suite"/>
-        </div>
+    <div>
+        <Header/>
+        <div class="main_conainer">
+            <div class="row">
+                <FeatureOverview :suite="suite"/>
+                <ScenarioOverview :suite="suite"/>
+            </div>
 
-        <div class="row">
-            <FeatureTable :suite="suite"/>
+            <div class="row">
+                <FeatureTable :suite="suite"/>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+    import Header from "../global/Header.vue";
     import FeatureOverview from "./FeatureOverview.vue";
     import ScenarioOverview from "./ScenarioOverview.vue";
     import FeatureTable from "./FeatureTable.vue";
@@ -27,14 +31,14 @@
         },
         created() {
             this.suite = window.data;
-            console.log(window.data);
         },
         methods: {
         },
         components: {
             ScenarioOverview,
             FeatureOverview,
-            FeatureTable
+            FeatureTable,
+            Header
         }
     }
 </script>

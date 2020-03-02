@@ -68,9 +68,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr v-bind="page" v-for="feature in filterFeatures(suite.features)" role="row">
+                                <tr v-for="feature in filterFeatures(suite.features)" role="row">
                                     <td>
-                                        <a :href="'#features/' + feature.id">{{feature.name}}</a>
+                                        <router-link :to="{name: 'feature', params: {
+                                                fid: feature.id,
+                                                feature: feature
+                                            }
+                                        }">{{feature.name}}</router-link>
                                     </td>
                                     <td class="text-center">
                                         <i v-if="feature.tags && feature.tags.length > 0" class="fa fa-tag fa-lg" data-toggle="tooltip" data-placement="top" :title="feature.tags.map(tag => tag.name).join()"/>

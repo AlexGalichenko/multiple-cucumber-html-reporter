@@ -1,24 +1,15 @@
 <template>
-    <div class="page-container">
-        <md-app md-mode="fixed">
-            <md-app-toolbar class="md-primary">
-                <span class="md-title">@cucumber-e2e/reporter</span>
-            </md-app-toolbar>
-            <md-app-content>
-                <ScenarioCard
-                    v-for="scenario in feature.elements"
-                    :scenario="scenario"
-                    :key="scenario.id"
-                    :fid="feature.id"
-                />
-            </md-app-content>
-            <div>Footer</div>
-        </md-app>
+    <div>
+        <Header/>
+        <div class="main_conainer">
+            <Scenarios :feature="feature"/>
+        </div>
     </div>
 </template>
 
 <script>
-    import ScenarioCard from "./ScenarioCard.vue";
+    import Header from "../global/Header.vue";
+    import Scenarios from "./Scenarios.vue";
 
     export default {
         name: "Feature",
@@ -27,11 +18,15 @@
         },
         data() {
             return {
-                feature: window.data.find(feature => feature.id === this.fid)
+                feature: null
             }
         },
+        created() {
+            this.feature = window.data.features.find(f => f.id === this.fid);
+        },
         components: {
-            ScenarioCard
+            Header,
+            Scenarios
         }
     }
 </script>
