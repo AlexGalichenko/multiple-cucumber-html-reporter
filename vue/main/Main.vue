@@ -4,7 +4,7 @@
         <div class="main_conainer">
             <div class="row">
                 <FeatureOverview :suite="suite"/>
-                <ScenarioOverview :suite="suite"/>
+                <ScenarioOverview :suite="suite" :width="6"/>
             </div>
 
             <div class="row">

@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-6 col-lg-6 col-xs-12">
+    <div :class="`col-md-${width} col-lg-${width} col-xs-12`">
         <div class="x_panel fixed_height_360">
             <div class="x_title">
                 <h2>Scenarios</h2>
@@ -147,7 +147,8 @@
             }
         },
         props: {
-            suite: Object
+            suite: Object,
+            width: String
         },
         components: {
             PieChart
