@@ -46,30 +46,72 @@
                             <table id="features-table" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer">
                                 <thead>
                                 <tr>
-                                    <th>Feature name</th>
-                                    <th><i class="fa fa-tags fa-lg" title="Tags"></i></th>
-                                    <th>Status</th>
-                                    <th class="text-center">
-                                        <i class="fa fa-desktop fa-lg"></i>
-                                        <i class="fa fa-mobile fa-lg"></i>
+                                    <th>
+                                        <a class="pointer first-column" role="button" @click="toggleSort('nameComparator')">
+                                            <span>Feature</span>
+                                            <i :class="sortIcon('nameComparator')" title="sort"/>
+                                        </a>
                                     </th>
+                                    <th><i class="fa fa-tags fa-lg" title="Tags"/></th>
+                                    <th>Status</th>
+                                    <th class="text-center">Platform</th>
                                     <th>Device</th>
                                     <th>OS</th>
                                     <th v-if="suite.app > 0">App</th>
                                     <th v-if="suite.browser > 0">Browser</th>
-                                    <th v-if="suite.displayDuration > 0">Duration</th>
-                                    <th>Total</th>
-                                    <th>Passed</th>
-                                    <th>Failed</th>
-                                    <th v-if="suite.scenarios.pending > 0">Pending</th>
-                                    <th v-if="suite.scenarios.skipped > 0">Skip</th>
-                                    <th v-if="suite.scenarios.notdefined > 0">Undefined</th>
-                                    <th v-if="suite.scenarios.ambiguous > 0">Ambiguous</th>
+                                    <th class="pointer" v-if="suite.displayDuration > 0">
+                                        <a class="pointer" role="button" @click="toggleSort('durationComparator')">
+                                            <span>Duration</span>
+                                            <i :class="sortIcon('durationComparator')" title="sort"/>
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a class="pointer" role="button" @click="toggleSort('totalComparator')">
+                                            <span>Total</span>
+                                            <i :class="sortIcon('totalComparator')" title="sort"/>
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a class="pointer" role="button" @click="toggleSort('passedComparator')">
+                                            <span>Passed</span>
+                                            <i :class="sortIcon('passedComparator')" title="sort"/>
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a class="pointer" role="button" @click="toggleSort('failedComparator')">
+                                            <span>Failed</span>
+                                            <i :class="sortIcon('failedComparator')" title="sort"/>
+                                        </a>
+                                    </th>
+                                    <th v-if="suite.scenarios.pending > 0">
+                                        <a class="pointer" role="button" @click="toggleSort('pendingComparator')">
+                                            <span>Pending</span>
+                                            <i :class="sortIcon('pendingComparator')" title="sort"/>
+                                        </a>
+                                    </th>
+                                    <th v-if="suite.scenarios.skipped > 0">
+                                        <a class="pointer" role="button" @click="toggleSort('skippedComparator')">
+                                            <span>Skipped</span>
+                                            <i :class="sortIcon('skippedComparator')" title="sort"/>
+                                        </a>
+                                    </th>
+                                    <th v-if="suite.scenarios.notdefined > 0">
+                                        <a class="pointer" role="button" @click="toggleSort('undefinedComparator')">
+                                            <span>Undefined</span>
+                                            <i :class="sortIcon('undefinedComparator')" title="sort"/>
+                                        </a>
+                                    </th>
+                                    <th v-if="suite.scenarios.ambiguous > 0">
+                                        <a class="pointer" role="button" @click="toggleSort('ambiguousComparator')">
+                                            <span>Ambiguous</span>
+                                            <i :class="sortIcon('ambiguousComparator')" title="sort"/>
+                                        </a>
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr v-for="feature in filterFeatures(suite.features)" role="row">
-                                    <td>
+                                <tr v-for="feature in filterFeatures(sortedFeatures)" role="row">
+                                    <td class="first-column">
                                         <router-link :to="{name: 'feature', params: {
                                                 fid: feature.id,
                                                 feature: feature
@@ -103,7 +145,7 @@
                                             <span>{{browserIcon(feature)}}</span>
                                         </i>
                                     </td>
-                                    <td v-if="suite.displayDuration">{{feature.duration}}</td>
+                                    <td v-if="suite.displayDuration">{{feature.duration / 1000000000}}s</td>
                                     <td>{{feature.scenarios.total}}</td>
                                     <td>{{feature.scenarios.passed}}</td>
                                     <td>{{feature.scenarios.failed}}</td>
@@ -150,6 +192,7 @@
 
 <script>
     import * as featureUtils from "../utils/feature";
+    import * as sort from "../utils/sort";
 
     export default {
         name: "FeatureTable",
@@ -157,7 +200,9 @@
             return {
                 filterInput: "",
                 length: 50,
-                page: 0
+                page: 0,
+                comparator: "nameComparator",
+                order: false
             }
         },
         computed: {
@@ -169,6 +214,14 @@
                 return last < this.suite.features.length
                     ? last
                     : this.suite.features.length
+            },
+            sortComparator() {
+                return sort[this.comparator];
+            },
+            sortedFeatures() {
+                const sortedFeatures = this.suite.features.sort(this.sortComparator);
+                if (this.order) return sortedFeatures.reverse();
+                else return sortedFeatures;
             }
         },
         methods: {
@@ -199,6 +252,25 @@
             },
             browserIcon(feature) {
                 return featureUtils.browserIcon(feature)
+            },
+            toggleSort(sort) {
+                if (this.comparator === sort) {
+                    this.order = !this.order;
+                } else {
+                    this.comparator = sort;
+                    this.order = false;
+                }
+            },
+            sortIcon(comparator) {
+                const NO_SORT = "fa fa-sort";
+                const ASC = "fa fa-sort-amount-asc";
+                const DESC = "fa fa-sort-amount-desc";
+
+                if (this.comparator === comparator) {
+                    return this.order ? DESC : ASC
+                } else {
+                    return NO_SORT
+                }
             }
         },
         props: {
@@ -208,6 +280,9 @@
 </script>
 
 <style scoped>
+    .pointer {
+        cursor: pointer;
+    }
     .table-responsive {
         overflow-x: unset;
     }
@@ -226,5 +301,8 @@
     #search {
         display: flex;
         justify-content: flex-end;
+    }
+    .first-column {
+        max-width: 300px;
     }
 </style>
