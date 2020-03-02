@@ -2,8 +2,11 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <div class="tags"></div>
-                <h2>Scenario: <small>{{scenario.name}}</small></h2>
+                <div v-if="scenario.tags.length > 0" class="tags">
+                    <i class="fa fa-tag fa-lg"/>
+                    <span>{{scenario.tags.map(s => s.name).join()}}</span>
+                </div>
+                <h2 class="title">Scenario:<small>{{scenario.name}}</small></h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li v-if="scenario.passed > 0">
                                   <span class="step passed-background" data-toggle="tooltip" title=""
@@ -93,4 +96,7 @@
 </script>
 
 <style scoped>
+    .title {
+        max-width: 80%;
+    }
 </style>
