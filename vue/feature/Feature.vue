@@ -2,14 +2,16 @@
     <div>
         <Header/>
         <div class="main_conainer">
-            <Scenarios :feature="feature"/>
+            <div class="row scenarios">
+                <Scenario v-for="(scenario, index) in feature.elements" :scenario="scenario" :key="index"/>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
     import Header from "../global/Header.vue";
-    import Scenarios from "./Scenarios.vue";
+    import Scenario from "./Scenario.vue";
 
     export default {
         name: "Feature",
@@ -26,11 +28,13 @@
         },
         components: {
             Header,
-            Scenarios
+            Scenario
         }
     }
 </script>
 
 <style scoped>
-
+    .scenarios {
+        display: block;
+    }
 </style>
