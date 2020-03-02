@@ -116,7 +116,7 @@
                                                 fid: feature.id,
                                                 feature: feature
                                             }
-                                        }">{{feature.name}}</router-link>
+                                        }" class="feature-link">{{feature.name}}</router-link>
                                     </td>
                                     <td class="text-center">
                                         <i v-if="feature.tags && feature.tags.length > 0" class="fa fa-tag fa-lg" data-toggle="tooltip" data-placement="top" :title="feature.tags.map(tag => tag.name).join()"/>
@@ -280,6 +280,12 @@
 </script>
 
 <style scoped>
+    span, i, th, td {
+        color: #5A738E;
+    }
+    .feature-link {
+        color: #337ab7
+    }
     .table-responsive {
         overflow-x: unset;
     }
