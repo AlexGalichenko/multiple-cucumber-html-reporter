@@ -148,7 +148,7 @@
         },
         props: {
             suite: Object,
-            width: String
+            width: Number
         },
         components: {
             PieChart

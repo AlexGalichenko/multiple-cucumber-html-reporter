@@ -1,8 +1,12 @@
 <template>
     <div>
         <Header/>
-        <ScenarioOverview :suite="feature" :width="8"/>
         <div class="main_conainer">
+            <Title :feature="feature"/>
+            <div class="row">
+                <ScenarioOverview :suite="feature" :width="8"/>
+                <Metadata/>
+            </div>
             <div class="row scenarios">
                 <Scenario v-for="(scenario, index) in feature.elements" :scenario="scenario" :key="index"/>
             </div>
@@ -14,6 +18,8 @@
     import Header from "../global/Header.vue";
     import Scenario from "./Scenario.vue";
     import ScenarioOverview from "../main/ScenarioOverview.vue";
+    import Metadata from "./Metadata.vue";
+    import Title from "./Title.vue";
 
     export default {
         name: "Feature",
@@ -31,7 +37,9 @@
         components: {
             Header,
             Scenario,
-            ScenarioOverview
+            ScenarioOverview,
+            Metadata,
+            Title
         }
     }
 </script>
