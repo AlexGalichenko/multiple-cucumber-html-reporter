@@ -1,7 +1,7 @@
 {
-  "name": "multiple-cucumber-html-reporter",
-  "version": "1.10.2",
-  "description": "Generate beautifull cucumberjs reports for multiple instances (browsers / devices)",
+  "name": "vue-cucumber-html-reporter",
+  "version": "0.0.1",
+  "description": "Generate beautiful cucumberjs reports for multiple instances (browsers / devices)",
   "keywords": [
     "cucumber",
     "html",
