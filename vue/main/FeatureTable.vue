@@ -2,7 +2,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Features overview</h2>
+                <h2>Features Overview</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
                         <a class="collapse-link">
@@ -113,8 +113,7 @@
                                 <tr v-for="feature in filterFeatures(sortedFeatures)" role="row">
                                     <td class="first-column">
                                         <router-link :to="{name: 'feature', params: {
-                                                fid: feature.id,
-                                                feature: feature
+                                                fid: feature.id
                                             }
                                         }" class="feature-link">{{feature.name}}</router-link>
                                     </td>

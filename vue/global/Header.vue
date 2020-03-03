@@ -9,7 +9,9 @@
                     <i class="fa fa-arrow-left fa-lg"><span>Back</span></i>
                 </a>
             </div>
-
+            <div class="navbar-text failed-link">
+                <router-link :to="{name: 'failed'}" class="pointer">Failed</router-link>
+            </div>
         </div>
     </nav>
 </template>
@@ -19,8 +21,7 @@
         name: "Header",
         computed: {
             displayBackButton() {
-                return this.$router.currentRoute.name === "feature" ||
-                       this.$router.currentRoute.name === "scenario"
+                return this.$router.currentRoute.name !== "main"
             }
         }
     }
@@ -35,5 +36,9 @@
     }
     .navbar-header {
         margin-left: 10px;
+    }
+    .failed-link {
+        margin-left: auto;
+        margin-right: 0;
     }
 </style>

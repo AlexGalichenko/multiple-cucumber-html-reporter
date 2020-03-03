@@ -9,6 +9,8 @@
                 <h2 class="title">
                     <span>Scenario:</span>
                     <small>{{scenario.name}}</small>
+                </h2>
+                <h2 class="title scenario-link">
                     <router-link :to="{name: 'scenario', params: {fid: fid, sid: scenario.id}}" class="pointer"><i class="fa fa-external-link"/></router-link>
                 </h2>
                 <ul class="nav navbar-right panel_toolbox">
@@ -91,9 +93,6 @@
                 this.isDisplayed = !this.isDisplayed
             }
         },
-        mounted() {
-            console.log(this.scenario);
-        },
         components: {
             Step
         }
@@ -106,5 +105,8 @@
     }
     .title > a {
         color: inherit;
+    }
+    .scenario-link {
+        padding-left: 5px;
     }
 </style>
