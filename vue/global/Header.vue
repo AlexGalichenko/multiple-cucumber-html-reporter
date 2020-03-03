@@ -3,8 +3,8 @@
         <div class="container-fluid" id="nav">
             <p class="navbar-text">Multiple Cucumber HTML Reporter</p>
             <div class="navbar-header">
-                <a v-if="isFeature" role="button" class="pointer navbar-brand" @click="$router.go(-1)">
-                    <i class="fa fa-arrow-left"><span>Back</span></i>
+                <a v-if="isFeature" role="button" class="pointer" @click="$router.go(-1)">
+                    <i class="fa fa-arrow-left fa-lg"><span>Back</span></i>
                 </a>
             </div>
 

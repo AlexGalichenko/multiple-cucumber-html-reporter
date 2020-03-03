@@ -5,7 +5,7 @@
             <Title :feature="feature"/>
             <div class="row">
                 <ScenarioOverview :suite="feature" :width="8"/>
-                <Metadata/>
+                <Metadata :feature="feature"/>
             </div>
             <div class="row scenarios">
                 <Scenario v-for="(scenario, index) in feature.elements" :scenario="scenario" :key="index"/>
