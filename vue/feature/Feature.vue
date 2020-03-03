@@ -8,7 +8,7 @@
                 <Metadata :feature="feature"/>
             </div>
             <div class="row scenarios">
-                <Scenario v-for="(scenario, index) in feature.elements" :scenario="scenario" :key="index"/>
+                <Scenario v-for="(scenario, index) in feature.elements" :scenario="scenario" :fid="fid" :key="index"/>
             </div>
         </div>
     </div>

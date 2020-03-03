@@ -6,7 +6,11 @@
                     <i class="fa fa-tag fa-lg"/>
                     <span>{{scenario.tags.map(s => s.name).join()}}</span>
                 </div>
-                <h2 class="title">Scenario:<small>{{scenario.name}}</small></h2>
+                <h2 class="title">
+                    <span>Scenario:</span>
+                    <small>{{scenario.name}}</small>
+                    <router-link :to="{name: 'scenario', params: {fid: fid, sid: scenario.id}}" class="pointer"><i class="fa fa-external-link"/></router-link>
+                </h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li v-if="scenario.passed > 0">
                                   <span class="step passed-background" data-toggle="tooltip" title=""
@@ -69,7 +73,8 @@
     export default {
         name: "Scenarios",
         props: {
-            scenario: Object
+            scenario: Object,
+            fid: String
         },
         data() {
             return {
@@ -98,5 +103,8 @@
 <style scoped>
     .title {
         max-width: 80%;
+    }
+    .title > a {
+        color: inherit;
     }
 </style>

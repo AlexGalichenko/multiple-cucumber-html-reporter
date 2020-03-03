@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 
 import Main from "./main/Main.vue";
 import Feature from "./feature/Feature.vue";
+import Scenario from "./scenario/Scenario.vue";
 import App from "./App.vue";
 
 Vue.config.productionTip = false;
@@ -20,6 +21,12 @@ const router = new VueRouter({
             component: Feature,
             props: true
         },
+        {
+            name: "scenario",
+            path: "/feature/:fid/scenario/:sid",
+            component: Scenario,
+            props: true
+        }
     ]
 });
 

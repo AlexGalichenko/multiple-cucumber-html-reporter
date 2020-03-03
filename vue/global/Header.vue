@@ -1,9 +1,11 @@
 <template>
     <nav class="navbar">
         <div class="container-fluid" id="nav">
-            <p class="navbar-text">Multiple Cucumber HTML Reporter</p>
+            <p class="navbar-text">
+                <router-link :to="{name: 'main'}" class="pointer">Multiple Cucumber HTML Reporter</router-link>
+            </p>
             <div class="navbar-header">
-                <a v-if="isFeature" role="button" class="pointer" @click="$router.go(-1)">
+                <a v-if="displayBackButton" role="button" class="pointer" @click="$router.go(-1)">
                     <i class="fa fa-arrow-left fa-lg"><span>Back</span></i>
                 </a>
             </div>
@@ -16,14 +18,18 @@
     export default {
         name: "Header",
         computed: {
-            isFeature() {
-                return this.$router.currentRoute.name === "feature"
+            displayBackButton() {
+                return this.$router.currentRoute.name === "feature" ||
+                       this.$router.currentRoute.name === "scenario"
             }
         }
     }
 </script>
 
 <style scoped>
+    .navbar-text > a {
+        color: inherit;
+    }
     #nav {
         justify-content: left;
     }
