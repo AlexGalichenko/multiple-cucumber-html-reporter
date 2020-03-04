@@ -8,6 +8,11 @@
                         <h2>
                             Failed Overview {{this.failed.length}}
                         </h2>
+                        <h2 class="copy">
+                            <a role="button" class="pointer">
+                                <i class="fa fa-copy"/>
+                            </a>
+                        </h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -96,20 +101,15 @@
 </script>
 
 <style scoped>
+    .copy {
+        margin-left: auto;
+        float: right;
+        margin-right: 5px;
+    }
     span, i, th, td {
         color: #5A738E;
     }
     .feature-link {
         color: #337ab7
-    }
-    .step {
-        border-radius: 50%;
-        color: #ffffff;
-        /*display: block;*/
-        font-size: 14px;
-        height: 30px;
-        margin-right: 5px;
-        padding: 5px;
-        text-align: center;
     }
 </style>

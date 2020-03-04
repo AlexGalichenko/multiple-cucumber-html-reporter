@@ -463,3 +463,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before
 .pointer {
     cursor: pointer;
 }
+
+.panel_toolbox > li {
+    margin-left: auto;
+}

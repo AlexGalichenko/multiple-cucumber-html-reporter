@@ -3,8 +3,9 @@
         <Header/>
         <div class="main_conainer">
             <div class="row">
-                <FeatureOverview :suite="suite"/>
-                <ScenarioOverview :suite="suite" :width="6"/>
+                <FeatureOverview :suite="suite" :width="suite.customData ? 4 : 6"/>
+                <ScenarioOverview :suite="suite" :width="suite.customData ? 4 : 6"/>
+                <Metadata v-if="suite.customData" :suite="suite" :width="4"/>
             </div>
 
             <div class="row">
@@ -19,6 +20,7 @@
     import FeatureOverview from "./FeatureOverview.vue";
     import ScenarioOverview from "./ScenarioOverview.vue";
     import FeatureTable from "./FeatureTable.vue";
+    import Metadata from "./Metadata.vue";
 
     export default {
         name: "Main",
@@ -35,6 +37,7 @@
         methods: {
         },
         components: {
+            Metadata,
             ScenarioOverview,
             FeatureOverview,
             FeatureTable,

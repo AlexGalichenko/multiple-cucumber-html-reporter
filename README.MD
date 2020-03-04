@@ -3,7 +3,7 @@ Multiple Cucumber HTML Reporter
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 This is a fork of [multiple-cucumber-html-reporter](https://github.com/wswebcreation/multiple-cucumber-html-reporter) (kudos wswebcreation)
-Usecases presented before 1.16.0 of original reporter is supported
+Most use cases presented before 1.16.0 of original reporter is supported
 
 # Important
 
@@ -142,19 +142,6 @@ This expects the durations in the report to be in **nanoseconds**, which might r
 
 If set to `true` the duration of steps will be expected to be in **milliseconds**, which might result in incorrect durations when using a version of Cucumber(JS 1 or 4) that does report in **nanaseconds**.
 This parameter relies on `displayDuration: true`
-
-### `customStyle`
-- **Type:** `path`
-- **Mandatory:** No
-
-If you need add some custom style to your report. Add it like this `customStyle: 'your-path-where/custom.css'`
-
-### `overrideStyle`
-- **Type:** `path`
-- **Mandatory:** No
-
-If you need replace default style for your report. Add it like this `overrideStyle: 'your-path-where/custom.css'`
-
 
 ### `metadata`
 - **Type:** `JSON`

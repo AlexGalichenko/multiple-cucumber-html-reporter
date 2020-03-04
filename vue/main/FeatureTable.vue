@@ -5,14 +5,14 @@
                 <h2>Features Overview</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
+                        <a class="collapse-link" @click="isVisible = !isVisible">
+                            <i :class="`fa fa-chevron-${isVisible ? 'up' : 'down'}`"/>
                         </a>
                     </li>
                 </ul>
                 <div class="clearfix"></div>
             </div>
-            <div class="x_content">
+            <div v-show="isVisible" class="x_content">
                 <div class="table-responsive">
                     <div id="features-table_wrapper" class="container-fluid dataTables_wrapper dt-bootstrap no-footer">
                         <div class="row" id="search-bar">
@@ -144,7 +144,7 @@
                                             <span>{{browserIcon(feature)}}</span>
                                         </i>
                                     </td>
-                                    <td v-if="suite.displayDuration">{{feature.duration / 1000000000}}s</td>
+                                    <td v-if="suite.displayDuration">{{feature.duration}}</td>
                                     <td>{{feature.scenarios.total}}</td>
                                     <td>{{feature.scenarios.passed}}</td>
                                     <td>{{feature.scenarios.failed}}</td>
@@ -201,7 +201,8 @@
                 length: 50,
                 page: 0,
                 comparator: "nameComparator",
-                order: false
+                order: false,
+                isVisible: true
             }
         },
         computed: {
@@ -279,7 +280,7 @@
 </script>
 
 <style scoped>
-    span, i, th, td {
+    .x_content span, .x_content i, .x_content th, .x_content td {
         color: #5A738E;
     }
     .feature-link {

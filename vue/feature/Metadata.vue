@@ -1,18 +1,18 @@
 <template>
     <div class="col-md-4 col-lg-4 col-xs-12">
-        <div class="x_panel fixed_height_360">
+        <div :class="`x_panel ${isVisible ? 'fixed_height_360' : ''}`">
             <div class="x_title">
                 <h2>Metadata</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
+                        <a class="collapse-link" @click="isVisible = !isVisible">
+                            <i :class="`fa fa-chevron-${isVisible ? 'up' : 'down'}`"/>
                         </a>
                     </li>
                 </ul>
                 <div class="clearfix"></div>
             </div>
-            <div class="x_content">
+            <div v-show="isVisible" class="x_content">
                 <div class="dashboard-widget-content">
                     <ul class="quick-list">
                         <li>
@@ -58,6 +58,11 @@
         name: "Metadata",
         props: {
             feature: Object
+        },
+        data() {
+            return {
+                isVisible: true
+            }
         },
         computed: {
             deviceIcon() {

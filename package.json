@@ -15,6 +15,7 @@
   "scripts": {
     "webpack:watch": "webpack --watch",
     "webpack": "webpack",
+    "pretest": "webpack",
     "test": "node ./test/test.js",
     "unit.test": "jasmine JASMINE_CONFIG_PATH=test/unit/jasmine.json",
     "unit.test.coverage": "JASMINE_CONFIG_PATH=test/unit/jasmine.json istanbul cover jasmine",

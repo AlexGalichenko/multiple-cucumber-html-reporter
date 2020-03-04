@@ -1,9 +1,9 @@
 function isMobile(feature) {
-    return ["android", "ios"].includes(feature.metadata.platform.name.toLowerCase());
+    return ["android", "ios"].includes(feature.metadata.platform && feature.metadata.platform.name.toLowerCase());
 }
 
 function isDesktop(feature) {
-    return ["windows", "osx", "linux", "ubuntu"].includes(feature.metadata.platform.name.toLowerCase());
+    return ["windows", "osx", "linux", "ubuntu"].includes(feature.metadata.platform && feature.metadata.platform.name.toLowerCase());
 }
 
 export function statusIcon(feature) {
@@ -33,17 +33,14 @@ export function deviceType(feature) {
 }
 
 export function platformName(feature) {
-    if (
-        feature.metadata.platform.name.toLowerCase() === "ios" ||
-        feature.metadata.platform.name.toLowerCase() === "osx"
-    ) return "apple";
-    if (feature.metadata.platform.name.toLowerCase() === "android") return "android";
-    if (feature.metadata.platform.name.toLowerCase() === "windows") return "windows";
-    if (feature.metadata.platform.name.toLowerCase() === "windows") return "windows";
-    if (
-        feature.metadata.platform.name.toLowerCase() === "ubuntu" ||
-        feature.metadata.platform.name.toLowerCase() === "linux"
-    ) return "linux";
+    if (feature.metadata.platform) {
+        const platform = feature.metadata.platform.name.toLowerCase();
+        if (platform === "ios" || platform === "osx") return "apple";
+        if (platform === "android") return "android";
+        if (platform === "windows") return "windows";
+        if (platform === "windows") return "windows";
+        if (platform === "ubuntu" || platform === "linux") return "linux";
+    }
     return "question-circle not-defined-color";
 }
 
@@ -52,12 +49,14 @@ export function app(feature) {
 }
 
 export function browserIcon(feature) {
-    const browserName = feature.metadata.browser.name.toLowerCase();
-    if (["firefox", "safari", "chrome"].includes(browserName))
-        return browserName;
-    if (["edge", "microsoftedge"].includes(browserName))
-        return "edge";
-    if (["internet explorer"].includes(browserName))
-        return "internet explorer";
+    if (feature.metadata.browser) {
+        const browserName = feature.metadata.browser.name.toLowerCase();
+        if (["firefox", "safari", "chrome"].includes(browserName))
+            return browserName;
+        if (["edge", "microsoftedge"].includes(browserName))
+            return "edge";
+        if (["internet explorer"].includes(browserName))
+            return "internet explorer";
+    }
     return "question-circle not-defined-color";
 }

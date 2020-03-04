@@ -15,44 +15,44 @@
                 </h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li v-if="scenario.passed > 0">
-                                  <span class="step passed-background" data-toggle="tooltip" title=""
-                                        data-original-title="Scenario is passed">
-                                    {{scenario.passed}}
-                                  </span>
+                        <span class="step passed-background" data-toggle="tooltip" title=""
+                            data-original-title="Scenario is passed">
+                        {{scenario.passed}}
+                        </span>
                     </li>
                     <li v-if="scenario.failed > 0">
-                                  <span class="step failed-background" data-toggle="tooltip" title=""
-                                        data-original-title="Scenario is failed">
-                                    {{scenario.failed}}
-                                  </span>
+                        <span class="step failed-background" data-toggle="tooltip" title=""
+                            data-original-title="Scenario is failed">
+                        {{scenario.failed}}
+                        </span>
                     </li>
                     <li v-if="scenario.skipped > 0">
-                                  <span class="step skipped-background" data-toggle="tooltip" title=""
-                                        data-original-title="Scenario is skipped">
-                                    {{scenario.skipped}}
-                                  </span>
+                        <span class="step skipped-background" data-toggle="tooltip" title=""
+                            data-original-title="Scenario is skipped">
+                        {{scenario.skipped}}
+                        </span>
                     </li>
                     <li v-if="scenario.notdefined > 0">
-                                  <span class="step not-defined-background" data-toggle="tooltip" title=""
-                                        data-original-title="Scenario is undefined">
-                                    {{scenario.notdefined}}
-                                  </span>
+                        <span class="step not-defined-background" data-toggle="tooltip" title=""
+                            data-original-title="Scenario is undefined">
+                        {{scenario.notdefined}}
+                        </span>
                     </li>
                     <li v-if="scenario.ambiguous > 0">
-                                  <span class="step ambiguous-background" data-toggle="tooltip" title=""
-                                        data-original-title="Scenario is ambiguous">
-                                    {{scenario.ambiguous}}
-                                  </span>
+                        <span class="step ambiguous-background" data-toggle="tooltip" title=""
+                            data-original-title="Scenario is ambiguous">
+                        {{scenario.ambiguous}}
+                        </span>
                     </li>
                     <li v-if="scenario.pending > 0">
-                                  <span class="step pending-background" data-toggle="tooltip" title=""
-                                        data-original-title="Scenario is pending">
-                                    {{scenario.pending}}
-                                  </span>
+                        <span class="step pending-background" data-toggle="tooltip" title=""
+                            data-original-title="Scenario is pending">
+                        {{scenario.pending}}
+                        </span>
                     </li>
                     <li>
-                        <span style="font-size:1.2em"> Duration:</span>
-                        <span style="padding-right:5em">{{scenario.duration / 1000000000}}s</span>
+                        <span style="font-size:1.2em">Duration:</span>
+                        <span style="padding-right:5em">{{scenario.duration}}</span>
                     </li>
                     <li>
                         <a class="collapse-link" @click="toggleStepsVisibility">

@@ -4,12 +4,12 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackInlineSourcePlugin = require("html-webpack-inline-source-plugin");
 
 module.exports = {
-    mode: "production",
+    mode: "development",
     entry: {
         app: "./vue/main.js",
     },
     output: {
-        path: path.resolve(__dirname, "dist"),
+        path: path.resolve(__dirname, "templates"),
         filename: "bundle.js"
     },
     module: {
@@ -41,9 +41,10 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
-            template: "./vue/index1.html",
+            template: "./vue/template.html",
             inject: "body",
-            inlineSource: ".(js|css)$"
+            inlineSource: ".(js|css)$",
+            filename: "template.html"
         }),
         new HtmlWebpackInlineSourcePlugin()
     ]
