@@ -53,7 +53,13 @@
                                         </a>
                                     </th>
                                     <th><i class="fa fa-tags fa-lg" title="Tags"/></th>
-                                    <th>Status</th>
+                                    <th @mouseenter="statusFilter = !statusFilter" @mouseleave="statusFilter = !statusFilter" class="pointer">
+                                        <span>Status</span>
+                                        <a role="button" class="pointer">
+                                            <i class="fa fa-filter"/>
+                                        </a>
+                                        <StatusFilter :isVisible="statusFilter" @statusFilter=""/>
+                                    </th>
                                     <th class="text-center">Platform</th>
                                     <th>Device</th>
                                     <th>OS</th>
@@ -193,6 +199,8 @@
     import * as featureUtils from "../utils/feature";
     import * as sort from "../utils/sort";
 
+    import StatusFilter from "./filter/StatusFilter.vue";
+
     export default {
         name: "FeatureTable",
         data() {
@@ -202,7 +210,8 @@
                 page: 0,
                 comparator: "nameComparator",
                 order: false,
-                isVisible: true
+                isVisible: true,
+                statusFilter: false
             }
         },
         computed: {
@@ -226,11 +235,9 @@
         },
         methods: {
             filterFeatures(features) {
-                if (this.filterInput) {
-                    return features.filter(feature => feature.name.includes(this.filterInput));
-                } else {
-                    return features.filter((_, index) => index >= this.firstOnPage && index <= this.lastOnPage);
-                }
+                return features
+                    .filter(feature => feature.name.includes(this.filterInput))
+                    .filter((_, index) => index >= this.firstOnPage && index <= this.lastOnPage);
             },
             statusIcon(feature) {
                 return featureUtils.statusIcon(feature)
@@ -275,6 +282,9 @@
         },
         props: {
             suite: Object
+        },
+        components: {
+            StatusFilter
         }
     }
 </script>
