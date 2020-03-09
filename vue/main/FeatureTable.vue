@@ -31,7 +31,9 @@
                             </div>
                             <div class="col-sm-6" id="search">
                                 <div id="features-table_filter" class="dataTables_filter input-group">
-                                        <input v-model="filterInput"
+                                        <input
+                                        v-model="filterInput"
+                                        @input="page = 0"
                                         type="text"
                                         class="form-control"
                                         placeholder="Search"
@@ -116,7 +118,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr v-for="feature in filterFeatures(sortedFeatures)" role="row">
+                                <tr v-for="feature in paginatedFeatures" role="row">
                                     <td class="first-column">
                                         <router-link :to="{name: 'feature', params: {
                                                 fid: feature.id
@@ -165,22 +167,22 @@
                         <div class="row">
                             <div class="col-sm-5">
                                 <div class="dataTables_info" id="features-table_info" role="status" aria-live="polite">
-                                    Showing {{firstOnPage}} to {{lastOnPage}} of {{suite.features.length}} entries
+                                    Showing {{firstOnPage}} to {{lastOnPage}} of {{filterFeatures.length}} entries
                                 </div>
                             </div>
                             <div class="col-sm-7">
                                 <div class="dataTables_paginate paging_simple_numbers" id="features-table_paginate">
                                     <ul class="pagination">
-                                        <li class="page-item previous disabled" id="features-table_previous">
-                                            <a class="page-link" role="button" aria-controls="features-table" data-dt-idx="0" tabindex="0">Prev</a>
+                                        <li :class="`page-item previous ${page === 0 ? 'disabled' : ''}`" id="features-table_previous">
+                                            <a @click="prev" class="page-link pointer" role="button" aria-controls="features-table" data-dt-idx="0" tabindex="0">Prev</a>
                                         </li>
 
-                                        <li v-for="(p, index) in Array(Math.floor(suite.features.length / length) + 1)" class="page-item">
-                                            <a @click="page = index" role="button" aria-controls="features-table" tabindex="0" class="page-link">{{index + 1}}</a>
+                                        <li v-for="(p, index) in Array(Math.floor(filterFeatures.length / length) + 1)" :class="`page-item ${index === page ? 'active' : ''}`">
+                                            <a @click="page = index" role="button" aria-controls="features-table" tabindex="0" class="page-link pointer">{{index + 1}}</a>
                                         </li>
 
-                                        <li class="page-item next disabled" id="features-table_next">
-                                            <a role="button" class="page-link" aria-controls="features-table" data-dt-idx="2" tabindex="0">
+                                        <li :class="`page-item next ${page === Math.floor(filterFeatures.length / length) ? 'disabled' : ''}`" id="features-table_next">
+                                            <a @click="next" class="page-link pointer" role="button" aria-controls="features-table" data-dt-idx="2" tabindex="0">
                                                 Next
                                             </a>
                                         </li>
@@ -211,7 +213,8 @@
                 comparator: "nameComparator",
                 order: false,
                 isVisible: true,
-                statusFilter: false
+                statusFilter: false,
+                features: this.suite.features
             }
         },
         computed: {
@@ -220,25 +223,27 @@
             },
             lastOnPage() {
                 const last = +((this.page * this.length) + this.length);
-                return last < this.suite.features.length
+                return last < this.filterFeatures.length
                     ? last
-                    : this.suite.features.length
+                    : this.filterFeatures.length
             },
             sortComparator() {
                 return sort[this.comparator];
             },
-            sortedFeatures() {
-                const sortedFeatures = this.suite.features.sort(this.sortComparator);
+            filterFeatures() {
+                const features = this.features
+                    .filter(feature => feature.name.includes(this.filterInput));
+                const sortedFeatures = features.sort(this.sortComparator);
                 if (this.order) return sortedFeatures.reverse();
                 else return sortedFeatures;
+            },
+            paginatedFeatures() {
+                const first = (this.page * this.length);
+                const last = (this.page * this.length) + this.length;
+                return this.filterFeatures.slice(first, last);
             }
         },
         methods: {
-            filterFeatures(features) {
-                return features
-                    .filter(feature => feature.name.includes(this.filterInput))
-                    .filter((_, index) => index >= this.firstOnPage && index <= this.lastOnPage);
-            },
             statusIcon(feature) {
                 return featureUtils.statusIcon(feature)
             },
@@ -277,6 +282,17 @@
                     return this.order ? DESC : ASC
                 } else {
                     return NO_SORT
+                }
+            },
+            prev() {
+                if (this.page > 0) {
+                    this.page -= 1
+                }
+            },
+            next() {
+                if (this.page < Math.floor(this.filterFeatures.length / this.length)) {
+                    console.log(this.page, Math.floor(this.filterFeatures.length / this.length));
+                    this.page += 1
                 }
             }
         },
