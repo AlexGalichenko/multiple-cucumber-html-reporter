@@ -134,25 +134,27 @@
                                         </i>
                                     </td>
                                     <td class="text-center">
-                                        <i :class="'fa fa-lg fa-'+ deviceIcon(feature)" data-toggle="tooltip" data-placement="top" :title="deviceType(feature)">
+                                        <i v-if="deviceIcon(feature)" :class="'fa fa-lg fa-'+ deviceIcon(feature)" data-toggle="tooltip" data-placement="top" :title="deviceType(feature)">
                                             <span>{{deviceIcon(feature)}}</span>
                                         </i>
                                     </td>
                                     <td>{{feature.metadata.device}}</td>
                                     <td class="text-center">
-                                        <i :class="'fa fa-lg fa-'+ platformName(feature)" data-toggle="tooltip" data-placement="top" :title="platformName(feature)">
+                                        <i v-if="platformName(feature)" :class="'fa fa-lg fa-'+ platformName(feature)" data-toggle="tooltip" data-placement="top" :title="platformName(feature)">
                                             <span>{{platformName(feature)}}</span>
                                         </i>
+                                        <span v-if="platformName(feature) && feature.metadata.platform.version">{{feature.metadata.platform.version}}</span>
                                     </td>
                                     <td v-if="suite.app > 0">
                                         {{app(feature)}}
                                     </td>
                                     <td v-if="suite.browser > 0" class="text-center">
-                                        <i :class="'fa fa-lg fa-'+ browserIcon(feature)" data-toggle="tooltip" data-placement="top" :title="browserIcon(feature)">
+                                        <i v-if="browserIcon(feature)" :class="'fa fa-lg fa-'+ browserIcon(feature)" data-toggle="tooltip" data-placement="top" :title="browserIcon(feature)">
                                             <span>{{browserIcon(feature)}}</span>
                                         </i>
+                                        <span v-if="browserIcon(feature) && feature.metadata.browser.version">{{feature.metadata.browser.version}}</span>
                                     </td>
-                                    <td v-if="suite.displayDuration">{{feature.duration}}</td>
+                                    <td v-if="suite.displayDuration">{{feature.time}}</td>
                                     <td>{{feature.scenarios.total}}</td>
                                     <td>{{feature.scenarios.passed}}</td>
                                     <td>{{feature.scenarios.failed}}</td>

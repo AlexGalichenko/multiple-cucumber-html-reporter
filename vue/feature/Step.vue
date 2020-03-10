@@ -15,7 +15,7 @@
             <span v-if="step.text" @click="displayText = !displayText" class="pointer">
                 <i class="fa fa-file fa-lg"/>
             </span>
-            <span class="duration">{{step.result.duration}}</span>
+            <span class="duration">{{step.time}}</span>
         </div>
         <div v-if="step.result.error_message" class="attachment error">
             <pre v-show="displayError" class="failed-color">{{step.result.error_message}}</pre>

@@ -52,7 +52,7 @@
                     </li>
                     <li>
                         <span style="font-size:1.2em">Duration:</span>
-                        <span style="padding-right:5em">{{scenario.duration}}</span>
+                        <span style="padding-right:5em">{{scenario.time}}</span>
                     </li>
                     <li>
                         <a class="collapse-link" @click="toggleStepsVisibility">

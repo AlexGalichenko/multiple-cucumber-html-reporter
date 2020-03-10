@@ -68,5 +68,6 @@ test.generate({
     jsonDir: './data/',
     reportPath: './.tmp/full2/',
     customMetadata: true,
-    displayDuration: true
+    displayDuration: true,
+    // durationInMS: true
 });

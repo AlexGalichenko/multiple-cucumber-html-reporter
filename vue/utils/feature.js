@@ -23,7 +23,7 @@ export function status(feature) {
 export function deviceIcon(feature) {
     if (isMobile(feature)) return "mobile";
     if (isDesktop(feature)) return "desktop";
-    return "question-circle not-defined-color";
+    return false;
 }
 
 export function deviceType(feature) {
@@ -38,10 +38,9 @@ export function platformName(feature) {
         if (platform === "ios" || platform === "osx") return "apple";
         if (platform === "android") return "android";
         if (platform === "windows") return "windows";
-        if (platform === "windows") return "windows";
         if (platform === "ubuntu" || platform === "linux") return "linux";
     }
-    return "question-circle not-defined-color";
+    return false;
 }
 
 export function app(feature) {
@@ -58,5 +57,5 @@ export function browserIcon(feature) {
         if (["internet explorer"].includes(browserName))
             return "internet explorer";
     }
-    return "question-circle not-defined-color";
+    return false;
 }
