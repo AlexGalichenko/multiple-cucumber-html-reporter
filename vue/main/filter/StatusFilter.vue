@@ -10,13 +10,8 @@
 </template>
 
 <script>
-    const defaultList = [
-        "Passed",
-        "Failed",
-        "Skipped",
-        "Pending",
-        "Undefined"
-    ];
+    import { statuses as defaultList } from "../../utils/defaults";
+
     export default {
         name: "StatusFilter",
         data() {

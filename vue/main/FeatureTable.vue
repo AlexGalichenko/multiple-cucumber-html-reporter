@@ -54,19 +54,19 @@
                                             <i :class="sortIcon('nameComparator')" title="sort"/>
                                         </a>
                                     </th>
-                                    <th><i class="fa fa-tags fa-lg" title="Tags"/></th>
-                                    <th @mouseenter="statusFilter = !statusFilter" @mouseleave="statusFilter = !statusFilter" class="pointer">
+                                    <th class="text-center"><i class="fa fa-tags fa-lg text-center" title="Tags"/></th>
+                                    <th @mouseenter="statusFilter = !statusFilter" @mouseleave="statusFilter = !statusFilter" class="pointer text-center">
                                         <span>Status</span>
                                         <a role="button" class="pointer">
                                             <i class="fa fa-filter"/>
                                         </a>
-                                        <StatusFilter :isVisible="statusFilter" @statusFilter=""/>
+                                        <StatusFilter :isVisible="statusFilter" @statusFilter="setStatuses"/>
                                     </th>
                                     <th class="text-center">Platform</th>
                                     <th>Device</th>
-                                    <th>OS</th>
+                                    <th class="text-center">OS</th>
                                     <th v-if="suite.app > 0">App</th>
-                                    <th v-if="suite.browser > 0">Browser</th>
+                                    <th class="text-center" v-if="suite.browser > 0">Browser</th>
                                     <th class="pointer" v-if="suite.displayDuration > 0">
                                         <a class="pointer" role="button" @click="toggleSort('durationComparator')">
                                             <span>Duration</span>
@@ -200,6 +200,7 @@
 <script>
     import * as featureUtils from "../utils/feature";
     import * as sort from "../utils/sort";
+    import { statuses as defaultList } from "../utils/defaults";
 
     import StatusFilter from "./filter/StatusFilter.vue";
 
@@ -214,7 +215,8 @@
                 order: false,
                 isVisible: true,
                 statusFilter: false,
-                features: this.suite.features
+                features: this.suite.features,
+                statuses: defaultList
             }
         },
         computed: {
@@ -232,7 +234,10 @@
             },
             filterFeatures() {
                 const features = this.features
-                    .filter(feature => feature.name.includes(this.filterInput));
+                    .filter(feature => {
+                        return feature.name.includes(this.filterInput)
+                            && this.statuses.includes(this.status(feature))
+                    });
                 const sortedFeatures = features.sort(this.sortComparator);
                 if (this.order) return sortedFeatures.reverse();
                 else return sortedFeatures;
@@ -291,9 +296,12 @@
             },
             next() {
                 if (this.page < Math.floor(this.filterFeatures.length / this.length)) {
-                    console.log(this.page, Math.floor(this.filterFeatures.length / this.length));
                     this.page += 1
                 }
+            },
+            setStatuses(statuses) {
+                this.page = 0;
+                this.statuses = statuses
             }
         },
         props: {
