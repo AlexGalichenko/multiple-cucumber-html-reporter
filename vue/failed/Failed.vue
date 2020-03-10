@@ -9,7 +9,7 @@
                             Failed Overview {{this.failed.length}}
                         </h2>
                         <h2 class="copy">
-                            <a role="button" class="pointer">
+                            <a @click="copyFailed" role="button" class="pointer">
                                 <i class="fa fa-copy"/>
                             </a>
                         </h2>
@@ -76,6 +76,14 @@
                 failed: null,
                 baseUrl: null,
                 origin: null
+            }
+        },
+        methods: {
+            async copyFailed() {
+                const failedText = this.failed
+                    .map(scenario => `${scenario.featureName}\t${scenario.name}\t${scenario.tags.map(t => t.name).join()}`)
+                    .join("\n");
+                await window.navigator.clipboard.writeText(`Feature\tScenario\tTags\n${failedText}`)
             }
         },
         created() {
