@@ -13,6 +13,7 @@
   "main": "lib/generate-report.js",
   "license": "MIT",
   "scripts": {
+    "prepublish": "webpack",
     "webpack:watch": "webpack --watch",
     "webpack": "webpack",
     "pretest": "webpack",
@@ -25,7 +26,10 @@
     "type": "git",
     "url": "git+https://github.com/wswebcreation/multiple-cucumber-html-reporter.git"
   },
-  "author": "wswebcreation",
+  "authors": [
+    "wswebcreation",
+    "Alexander Galichenko"
+  ],
   "bugs": {
     "url": "https://github.com/wswebcreation/multiple-cucumber-html-reporter/issues"
   },
