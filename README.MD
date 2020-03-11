@@ -13,10 +13,6 @@ Most use cases presented before 1.16.0 of original reporter is supported
 
 - **0.0.1:** Rewritten solution in vuejs engine
 
-![Snapshot - Features overview](./docs/images/browsers-features-overview.jpg "Snapshot - Browsers features overview")
-
-![Snapshot - Features overview](./docs/images/custom-metadata-features-overview.jpg "Snapshot - Custom metadata features overview")
-
 ## Install
 Install this module locally with the following command:
 
@@ -304,14 +300,6 @@ cucumberJSON[0].metadata = metadata;
 
 >If no correct value is provided the `?`-icon with the text `not known` is shown
 
-### Metadata example features overview
-![Snapshot - Features overview browser / device info](./docs/images/overview-metadata.jpg "Snapshot - Features overview browser / device info")
-
-### Metadata example scenario with and without known data
-![Snapshot - Scenario browser / device info](./docs/images/scenario-browser-metadata.jpg "Snapshot - Scenario browser / device info")
-![Snapshot - Scenario app / device info](./docs/images/scenario-app-metadata.jpg "Snapshot - Scenario app / device info")
-![Snapshot - Scenario browser / device info not known](./docs/images/scenario-no-metadata.jpg "Snapshot - Scenario browser / device info not known")
-
 ## FAQ
 ### Only 1 report is shown in the features overview table
 It could be that the name of the Cucumber JSON file that has been saved is not unique (enough).
@@ -352,17 +340,3 @@ You can attach plain-text / data at any time to a Cucumber JSON file to help deb
 You can attach JSON at any time to a Cucumber JSON file. You can add them during running or when a `scenario` failed.
 
 > Check the framework you are using to attach JSON data to the JSON file.
-
-## Changelog
-The Changelog can be found [here](./CHANGELOG.md)
-
-## Contributing
-How to contribute can be found [here](./docs/CONTRIBUTING.md)
-
-## Credits
-In the search for a reporting tools for Cucumber I found a few tools that helped me a lot:
-
-- [cucumber-html-repository](https://github.com/gkushang/cucumber-html-reporter)
-- [cucumber-html-report](https://github.com/leinonen/cucumber-html-report)
-- [cucumber-protractor-report](https://github.com/JesterXL/cucumber-protractor-report)
-- [grunt-protractor-cucumber-html-report](https://github.com/robhil/grunt-protractor-cucumber-html-report)

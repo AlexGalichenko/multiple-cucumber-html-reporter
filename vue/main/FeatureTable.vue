@@ -20,11 +20,11 @@
                                 <div class="dataTables_length" id="features-table_length">
                                     <div>
                                         <label>Show:</label>
-                                        <select v-model="length" name="features-table_length" class="form-control">
+                                        <select @change="page = 0" v-model="length" name="features-table_length" class="form-control">
                                             <option value="50">50</option>
                                             <option value="100">100</option>
                                             <option value="150">150</option>
-                                            <option value="-1">All</option>
+                                            <option :value="filterFeatures.length">All</option>
                                         </select>
                                     </div>
                                 </div>
@@ -179,11 +179,11 @@
                                             <a @click="prev" class="page-link pointer" role="button" aria-controls="features-table" data-dt-idx="0" tabindex="0">Prev</a>
                                         </li>
 
-                                        <li v-for="(p, index) in Array(Math.floor(filterFeatures.length / length) + 1)" :class="`page-item ${index === page ? 'active' : ''}`">
+                                        <li v-for="(p, index) in Array(Math.ceil(filterFeatures.length / length))" :class="`page-item ${index === page ? 'active' : ''}`">
                                             <a @click="page = index" role="button" aria-controls="features-table" tabindex="0" class="page-link pointer">{{index + 1}}</a>
                                         </li>
 
-                                        <li :class="`page-item next ${page === Math.floor(filterFeatures.length / length) ? 'disabled' : ''}`" id="features-table_next">
+                                        <li :class="`page-item next ${page === Math.ceil(filterFeatures.length / length) - 1 ? 'disabled' : ''}`" id="features-table_next">
                                             <a @click="next" class="page-link pointer" role="button" aria-controls="features-table" data-dt-idx="2" tabindex="0">
                                                 Next
                                             </a>
@@ -297,7 +297,7 @@
                 }
             },
             next() {
-                if (this.page < Math.floor(this.filterFeatures.length / this.length)) {
+                if (this.page < Math.ceil(this.filterFeatures.length / this.length) - 1) {
                     this.page += 1
                 }
             },
