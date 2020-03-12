@@ -9,7 +9,8 @@
 
     export default {
         name: "App",
-        components: {
+        created() {
+            window.document.title = window.data.pageTitle;
         }
     }
 </script>

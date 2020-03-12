@@ -37,7 +37,6 @@ test.generate({
     overrideStyle: path.join(__dirname, './my.css'),
     customMetadata: false,
     pageTitle: 'A custom page title',
-    pageFooter: '<div><p>Some custom footer data can be placed here</p></div>',
     customData: {
         title: 'Run info',
         data: [
@@ -57,17 +56,4 @@ test.generate({
     reportPath: './.tmp/custom-metadata/',
     customMetadata: true,
     displayDuration: true
-});
-
-/**
- * Generate a report with custom metadata
- * NOTE: must be last, if you use customMetadata you cannot reuse generator
- */
-test.generate({
-    saveCollectedJSON: true,
-    jsonDir: './data/',
-    reportPath: './.tmp/full2/',
-    customMetadata: true,
-    displayDuration: true,
-    // durationInMS: true
 });

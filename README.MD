@@ -116,12 +116,6 @@ You can change the report title in the HTML head Tag
 
 You can change the report name to a name you want
 
-### `pageFooter`
-- **Type:** `string`
-- **Mandatory:** No
-
-You can customise Page Footer if required. You just need to provide a html string like `<div><p>A custom footer in html</p></div>`
-
 ### `displayDuration`
 - **Type:** `boolean`
 - **Mandatory:** No
@@ -163,26 +157,6 @@ metadata:{
 ```
 
 See [metadata](./README.MD#metadata-1) for more info
-
-### `customMetadata`
-- **Type:** `boolean`
-- **Mandatory:** No
-
-It is possible to provide custom metadata by setting this variable to `true`. Custom metadata will override the regular metadata completely and potentially have strange formatting bugs if too many (10+) variables are used.
-The columns will be in the order defined by the order of the list.
-
-Adding the metadata is done in the same way as with normal metadata. The metadata is formed as a list of key-value pairs to preserve order:
-
-```js
-metadata: [
-        {name: 'Environment v.', value: '12.3'},
-        {name: 'Plugin v.', value: '32.1'},
-        {name: 'Variable set', value: 'Foo'}
-    ]
-```
-
-On the features overview page the custom metadata is shown like:
-![Snapshot - Features overview custom metadata](./docs/images/features-custom-metadata.jpg "Snapshot - Features overview custom metadata")
 
 >**IMPORTANT:**
 > This does not work correctly if features have different sets of metadata. Try to avoid this situation.
