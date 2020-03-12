@@ -5,6 +5,8 @@
 </template>
 
 <script>
+    import "../templates/fa.css";
+    import "bootstrap/dist/css/bootstrap.min.css";
     import "./assets/style.css";
 
     export default {
