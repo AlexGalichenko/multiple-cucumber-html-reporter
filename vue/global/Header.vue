@@ -2,7 +2,7 @@
     <nav class="navbar">
         <div class="container-fluid" id="nav">
             <p class="navbar-text">
-                <router-link :to="{name: 'main'}" class="pointer">Multiple Cucumber HTML Reporter</router-link>
+                <router-link :to="{name: 'main'}" class="pointer">{{reportName}}</router-link>
             </p>
             <div class="navbar-header">
                 <a v-if="displayBackButton" role="button" class="pointer" @click="$router.go(-1)">
@@ -19,6 +19,11 @@
 <script>
     export default {
         name: "Header",
+        data() {
+            return {
+                reportName: window.data.reportName
+            }
+        },
         computed: {
             displayBackButton() {
                 return this.$router.currentRoute.name !== "main"
