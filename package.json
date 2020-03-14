@@ -26,16 +26,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/AlexGalichenko/multiple-cucumber-html-reporter.git"
+    "url": "https://github.com/AlexGalichenko/vue-cucumber-html-reporter.git"
   },
   "authors": [
     "wswebcreation",
     "Alexander Galichenko"
   ],
   "bugs": {
-    "url": "https://github.com/AlexGalichenko/multiple-cucumber-html-reporter/issues"
+    "url": "https://github.com/AlexGalichenko/vue-cucumber-html-reporter/issues"
   },
-  "homepage": "https://github.com/AlexGalichenko/multiple-cucumber-html-reporter#readme",
+  "homepage": "https://github.com/AlexGalichenko/vue-cucumber-html-reporter#readme",
   "dependencies": {
     "chalk": "1.1.3",
     "find": "^0.2.9",
