@@ -56,8 +56,8 @@
                                     </th>
                                     <th class="text-center"><i class="fa fa-tags fa-lg text-center" title="Tags"/></th>
                                     <th @mouseenter="statusFilter = !statusFilter" @mouseleave="statusFilter = !statusFilter" class="pointer text-center">
-                                        <span>Status</span>
                                         <a role="button" class="pointer">
+                                            <span>Status</span>
                                             <i class="fa fa-filter"/>
                                         </a>
                                         <StatusFilter :isVisible="statusFilter" @statusFilter="setStatuses"/>
@@ -118,7 +118,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr v-for="feature in paginatedFeatures" role="row">
+                                <tr v-for="(feature, index) in paginatedFeatures" role="row" :key="index">
                                     <td class="first-column">
                                         <router-link :to="{name: 'feature', params: {
                                                 fid: feature.id
@@ -145,9 +145,7 @@
                                         </i>
                                         <span v-if="platformName(feature) && feature.metadata.platform.version">{{feature.metadata.platform.version}}</span>
                                     </td>
-                                    <td v-if="suite.app > 0">
-                                        {{app(feature)}}
-                                    </td>
+                                    <td v-if="suite.app > 0" v-html="app(feature)"/>
                                     <td v-if="suite.browser > 0" class="text-center">
                                         <i v-if="browserIcon(feature)" :class="'fa fa-lg fa-'+ browserIcon(feature)" data-toggle="tooltip" data-placement="top" :title="browserIcon(feature)">
                                             <span>{{browserIcon(feature)}}</span>
@@ -179,7 +177,7 @@
                                             <a @click="prev" class="page-link pointer" role="button" aria-controls="features-table" data-dt-idx="0" tabindex="0">Prev</a>
                                         </li>
 
-                                        <li v-for="(p, index) in Array(Math.ceil(filterFeatures.length / length))" :class="`page-item ${index === page ? 'active' : ''}`">
+                                        <li v-for="(p, index) in Array(Math.ceil(filterFeatures.length / length))" :key="index" :class="`page-item ${index === page ? 'active' : ''}`">
                                             <a @click="page = index" role="button" aria-controls="features-table" tabindex="0" class="page-link pointer">{{index + 1}}</a>
                                         </li>
 
