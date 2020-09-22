@@ -249,8 +249,8 @@ table td.chart .total {
     margin-left: 10px;
 }
 
-.x_title span {
-    color: #BDBDBD;
+.x_title span, .x_title a {
+    color: #73879C;
 }
 
 .x_content {
@@ -312,10 +312,6 @@ table td.chart .total {
 
 .page-title .title_right .pull-right {
     margin: 10px 0;
-}
-
-.page-title p {
-    margin-left: 15px;
 }
 
 .dashboard-widget-content {

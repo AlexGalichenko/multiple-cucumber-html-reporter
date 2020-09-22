@@ -3,8 +3,8 @@
         <div class="x_panel">
             <div class="x_title">
                 <div v-if="scenario.tags && scenario.tags.length > 0" class="tags">
-                    <i class="fa fa-tag fa-lg"/>
-                    <span>{{scenario.tags.map(s => s.name).join()}}</span>
+                    <Tags :tags="scenario.tags"/>
+                    <ExternalLinks :externalLinks="scenario.externalLinks"/>
                 </div>
                 <h2 class="title">
                     <span>Scenario:</span>
@@ -71,6 +71,8 @@
 
 <script>
     import Step from "./Step.vue";
+    import ExternalLinks from "../global/ExternalLinks.vue";
+    import Tags from "../global/Tags.vue";
 
     export default {
         name: "Scenarios",
@@ -94,7 +96,9 @@
             }
         },
         components: {
-            Step
+            Step,
+            ExternalLinks,
+            Tags
         }
     }
 </script>

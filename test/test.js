@@ -14,8 +14,24 @@ test.generate({
     customMetadata: false,
     displayDuration: true,
     durationInMS: false,
+    externalLinks: [
+        {
+            template: /jira\((.+)\)/,
+            url: 'https://vue-reporter.atlassian.net/browse/',
+            type: 'jira'
+        },
+        {
+            template: /bug\((.+)\)/,
+            url: 'https://vue-reporter.atlassian.net/browse/',
+            type: 'bug'
+        },
+        {
+            template: /link\((.+)\)/,
+            url: 'https://somesite.io/'
+        }
+    ],
     customData: {
-        title: 'Run info',
+        title: 'Run Info',
         data: [
             {label: 'Project', value: 'Custom project'},
             {label: 'Release', value: '1.2.3'},
