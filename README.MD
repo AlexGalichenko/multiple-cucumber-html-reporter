@@ -11,8 +11,9 @@ Most use cases presented before 1.16.0 of original reporter is supported
 
 > **Change Log**
 
-- **0.0.1:** Rewritten solution in vuejs engine
-
+- **0.1.0:** Rewritten solution in vuejs engine
+- **0.2.0:** Support of external link, global overview chart
+- 
 ## Install
 Install this module locally with the following command:
 
@@ -116,6 +117,12 @@ You can change the report title in the HTML head Tag
 
 You can change the report name to a name you want
 
+### `displayGlobalChart`
+- **Type:** `boolean`
+- **Mandatory:** No
+
+Display bar stack bar chart for features - scenario results
+
 ### `displayDuration`
 - **Type:** `boolean`
 - **Mandatory:** No
@@ -132,6 +139,23 @@ This expects the durations in the report to be in **nanoseconds**, which might r
 
 If set to `true` the duration of steps will be expected to be in **milliseconds**, which might result in incorrect durations when using a version of Cucumber(JS 1 or 4) that does report in **nanaseconds**.
 This parameter relies on `displayDuration: true`
+
+### `externalLinks`
+- **Type:** `Array<{template: Regexp, url: string, [type]: string}>`
+- **Default:** `false`
+- **Mandatory:** No
+
+Display tags that match template as an external links
+```js
+externalLinks: [
+    {
+        template: /bug\((.+)\)/,
+        url: 'https://vue-reporter.atlassian.net/browse/',
+        type: 'bug'
+    }
+]
+```
+Transforms @bug(TEST-1) into external link https://vue-reporter.atlassian.net/browse/TEST-1
 
 ### `metadata`
 - **Type:** `JSON`

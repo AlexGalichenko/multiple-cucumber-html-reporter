@@ -18,7 +18,6 @@ test.generate({
         {
             template: /jira\((.+)\)/,
             url: 'https://vue-reporter.atlassian.net/browse/',
-            type: 'jira'
         },
         {
             template: /bug\((.+)\)/,
