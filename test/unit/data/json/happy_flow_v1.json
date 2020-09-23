@@ -114,6 +114,18 @@
           {
             "name": "@julie",
             "line": 7
+          },
+          {
+            "name": "@jira(TEST-1)",
+            "line": 7
+          },
+          {
+            "name": "@bug(TEST-1)",
+            "line": 7
+          },
+          {
+            "name": "@bug(TEST-2)",
+            "line": 7
           }
         ],
         "type": "scenario"
@@ -367,6 +379,10 @@
       },
       {
         "name": "@angular",
+        "line": 1
+      },
+      {
+        "name": "@jira(TEST-3)",
         "line": 1
       }
     ],

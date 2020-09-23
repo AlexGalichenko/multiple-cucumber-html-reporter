@@ -16,7 +16,7 @@
                 <div class="dashboard-widget-content">
                     <table class="quick-list">
                         <tbody>
-                        <tr v-for="metadata in suite.customData.data">
+                        <tr v-for="(metadata, index) in suite.customData.data" :key="metadata.label + index">
                             <td class="meta-data-title">{{metadata.label}}</td>
                             <td class="meta-data-data">{{metadata.value}}</td>
                         </tr>

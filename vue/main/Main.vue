@@ -2,12 +2,14 @@
     <div>
         <Header/>
         <div class="main_conainer">
+            <div class="row" v-if="suite.displayGlobalChart">
+                <GlobalOverview :suite="suite" width="12"/>
+            </div>
             <div class="row">
                 <FeatureOverview :suite="suite" :width="suite.customData ? 4 : 6"/>
                 <ScenarioOverview :suite="suite" :width="suite.customData ? 4 : 6"/>
                 <Metadata v-if="suite.customData" :suite="suite" :width="4"/>
             </div>
-
             <div class="row">
                 <FeatureTable :suite="suite"/>
             </div>
@@ -18,6 +20,7 @@
 <script>
     import Header from "../global/Header.vue";
     import FeatureOverview from "./FeatureOverview.vue";
+        import GlobalOverview from "./GlobalOverview.vue";
     import ScenarioOverview from "./ScenarioOverview.vue";
     import FeatureTable from "./FeatureTable.vue";
     import Metadata from "./Metadata.vue";
@@ -40,6 +43,7 @@
             Metadata,
             ScenarioOverview,
             FeatureOverview,
+            GlobalOverview,
             FeatureTable,
             Header
         }
