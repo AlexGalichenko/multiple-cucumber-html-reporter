@@ -10,7 +10,7 @@
                     </div>
                     <h2 class="title">
                         <span>Scenario:</span>
-                        <small>{{scenario.name}}</small>
+                        <span>{{scenario.name}}</span>
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li v-if="scenario.passed > 0">
