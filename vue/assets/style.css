@@ -245,10 +245,6 @@ table td.chart .total {
     height: 360px;
 }
 
-.x_title h2 small {
-    margin-left: 10px;
-}
-
 .x_title span, .x_title a {
     color: #73879C;
 }
@@ -462,4 +458,24 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before
 
 .panel_toolbox > li {
     margin-left: auto;
+}
+
+.step-name {
+    font-size: 1.2em;
+}
+
+.step-params {
+    margin-left: 30px;
+}
+
+.step-params table {
+    width: unset;
+}
+
+.step-params pre {
+    color: #73879C;
+}
+
+.step-params td {
+    padding: 4px;
 }

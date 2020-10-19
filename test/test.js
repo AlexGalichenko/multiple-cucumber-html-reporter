@@ -72,3 +72,12 @@ test.generate({
     customMetadata: true,
     displayDuration: true
 });
+
+test.generate({
+    saveCollectedJSON: true,
+    jsonDir: './test/unit/data/data-table/',
+    reportPath: './.tmp/data-table/',
+    customMetadata: true,
+    displayDuration: true
+});
+

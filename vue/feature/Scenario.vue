@@ -8,7 +8,7 @@
                 </div>
                 <h2 class="title">
                     <span>Scenario:</span>
-                    <small>{{scenario.name}}</small>
+                    <span>{{scenario.name}}</span>
                 </h2>
                 <h2 class="title scenario-link">
                     <router-link :to="{name: 'scenario', params: {fid: fid, sid: scenario.id}}" class="pointer"><i class="fa fa-external-link"/></router-link>
